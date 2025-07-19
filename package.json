@@ -1,0 +1,43 @@
+{
+  "name": "pantheon-llm-hub",
+  "version": "1.0.0",
+  "description": "A cross-platform desktop application that provides abstracted access to various LLM systems",
+  "private": true,
+  "workspaces": [
+    "apps/electron",
+    "apps/web",
+    "packages/shared-types",
+    "packages/shared-components",
+    "packages/llm-service",
+    "packages/shared-utils",
+    "packages/config"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "dev": "npm run dev --workspaces",
+    "clean": "npm run clean --workspaces",
+    "electron": "npm run dev --workspace=apps/electron",
+    "web": "npm run dev --workspace=apps/web",
+    "server": "cd server && ./start-server.sh",
+    "server:build": "cd server && ./scripts/build.sh",
+    "server:docker": "cd server && docker-compose up",
+    "setup-server": "./setup-server.sh"
+  },
+  "keywords": [
+    "llm",
+    "electron",
+    "ollama",
+    "ai",
+    "p2p"
+  ],
+  "author": "Pantheon Team",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.0.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "7zip-bin": "^5.2.0",
+    "app-builder-bin": "^4.2.0"
+  }
+}

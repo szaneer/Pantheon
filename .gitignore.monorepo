@@ -1,0 +1,71 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# IDEs and editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+coverage/
+.nyc_output/
+
+# Production builds
+dist/
+build/
+out/
+
+# Environment
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+tmp/
+temp/
+.cache/
+
+# Debug
+debug/
+test-*.html
+test-*.js
+test-*.md
+
+# Misc
+*.bak
+*.tmp
+.vercel
+
+# Keep submodule directories but ignore their contents
+apps/web/*
+!apps/web/.gitkeep
+apps/electron/*
+!apps/electron/.gitkeep
+server/*
+!server/.gitkeep
+
+# But don't ignore the submodule definitions
+!.gitmodules

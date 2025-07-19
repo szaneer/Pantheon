@@ -1,0 +1,14 @@
+WebRTC Framework Build Information
+==================================
+Build Date: $(date)
+Architectures: x86_64, arm64 (Universal Binary)
+Build Arguments: 
+  - target_os="mac"
+  - is_component_build=false
+  - is_debug=false
+  - rtc_libvpx_build_vp9=false
+  - enable_stripping=true
+  - rtc_enable_protobuf=false
+
+Framework successfully built and integrated.
+EOF < /dev/null

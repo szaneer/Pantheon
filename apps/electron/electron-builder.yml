@@ -1,0 +1,81 @@
+appId: com.pantheon.llmhub
+productName: Pantheon
+electronVersion: 27.3.11
+
+# Ensure proper asar configuration
+asar: true
+compression: store
+
+directories:
+  output: dist
+  buildResources: build
+
+files:
+  - "index.html"
+  - "index-electron.html"
+  - "config.js"
+  - "assets-built/**/*"
+  - "electron/**/*"
+  - "src/**/*.js"
+  - "assets/**/*"
+  - "package.json"
+  - "native-bindings/**/*.js"
+  - "frameworks/**/*"
+  - "!**/*.ts"
+  - "!src/**/*.tsx"
+  - "!**/*.map"
+  - "!.env*"
+  - "!releases"
+  - "!dist"
+  - "!test-x86-build.js"
+  - "!native-bindings/**/*.cc"
+  - "!native-bindings/**/*.h"
+
+asarUnpack:
+  - "node_modules/@roamhq/**/*"
+  - "node_modules/wrtc/**/*"
+  - "node_modules/simple-peer/**/*"
+  - "frameworks/**/*"
+  - "native-bindings/**/*"
+  - "**/*.node"
+
+mac:
+  category: public.app-category.productivity
+  hardenedRuntime: true
+  gatekeeperAssess: false
+  entitlements: build/entitlements.mac.plist
+  entitlementsInherit: build/entitlements.mac.plist
+  identity: null
+  icon: assets/icon.icns
+  minimumSystemVersion: "10.13"
+  target:
+    - target: dmg
+      arch:
+        - x64
+        - arm64
+        - universal
+    - target: zip
+      arch:
+        - x64
+        - arm64
+        - universal
+
+linux:
+  target:
+    - AppImage
+    - deb
+  category: Development
+
+win:
+  target: nsis
+
+# Ensure all dependencies are included
+nodeGypRebuild: false
+npmRebuild: true
+
+# Auto-update configuration
+publish:
+  provider: github
+  owner: yourusername
+  repo: Pantheon
+  releaseType: release

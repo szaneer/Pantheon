@@ -1,0 +1,20 @@
+{
+  "name": "@pantheon/llm-core",
+  "version": "1.0.0",
+  "description": "Core LLM service logic for Pantheon",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "keywords": ["pantheon", "llm", "service"],
+  "author": "Pantheon Team",
+  "license": "MIT",
+  "dependencies": {
+    "@pantheon/types": "^1.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

@@ -1,0 +1,29 @@
+# Node modules
+node_modules/
+
+# Environment files
+.env
+.env.*
+
+# Git
+.git/
+.gitignore
+
+# Development files
+.vscode/
+*.log
+npm-debug.log*
+
+# Tests
+coverage/
+.nyc_output/
+
+# Documentation
+*.md
+docs/
+
+# Docker files (Cloud Build will use Dockerfile)
+docker-compose*.yml
+
+# Secrets (will be managed separately)
+secrets/firebase-key.json

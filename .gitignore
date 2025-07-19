@@ -1,0 +1,60 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Testing
+coverage/
+.nyc_output
+
+# Production
+dist/
+build/
+
+# Environment
+.env
+.env.*
+!.env.example
+!.env.*.example
+.env.local
+config.js
+firebaseConfig.ts
+firebaseConfig.js
+
+# Secrets
+server/secrets/
+**/secrets/
+firebase-key.json
+*-key.json
+*-credentials.json
+*-token.json
+*.pem
+*.key
+*.cert
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Temporary
+tmp/
+temp/
+.cache/
+
+# Deployment
+.vercel
+
+# Keep examples
+!.env.example
+!config.example.js
