@@ -1,0 +1,12 @@
+[submodule "server"]
+	path = server
+	url = https://github.com/szaneer/Pantheon-Server.git
+	branch = main
+[submodule "apps/electron"]
+	path = apps/electron
+	url = https://github.com/szaneer/Pantheon-Electron.git
+	branch = main
+[submodule "apps/web"]
+	path = apps/web
+	url = https://github.com/szaneer/Pantheon-Web.git
+	branch = main

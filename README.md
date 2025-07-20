@@ -1,119 +1,194 @@
-# Pantheon - Unified LLM Hub
+# Pantheon
 
-A comprehensive platform for managing and accessing Large Language Models (LLMs) across multiple interfaces with P2P model sharing capabilities.
+A decentralized AI chat platform that enables seamless P2P model sharing across devices. Connect your desktop and mobile devices to share local AI models without relying on cloud services.
+
+|Desktop|Web|
+|-|-|
+|<img width="1312" height="912" alt="Screenshot 2025-07-20 at 12 13 21 PM" src="https://github.com/user-attachments/assets/018c66af-9349-46a2-befa-31d73ca2abf6" />|<img width="572" height="845" alt="Screenshot 2025-07-20 at 12 13 33 PM" src="https://github.com/user-attachments/assets/b65b713a-d83f-4650-b236-766e4e19efbf" />|
+
+## 🌟 Features
+
+- **Peer-to-Peer Model Sharing**: Share AI models directly between devices
+- **Cross-Platform**: Electron desktop app and web client
+- **Local AI Models**: Support for Ollama, Apple Foundation Models, and more
+- **Real-time Chat**: WebRTC-based communication for low-latency conversations
+- **Decentralized**: No cloud dependency - your data stays on your devices
+- **Easy Setup**: Simple onboarding with automatic device discovery
 
 ## 🏗️ Architecture
 
-This monorepo contains:
-- **Web App** (`apps/web`) - React-based web interface for accessing remote models
-- **Electron App** (`apps/electron`) - Desktop application with local model hosting and P2P support  
-- **Server** (`server`) - P2P signaling server for device coordination
+This repository contains the main Pantheon project with the following components as submodules:
 
-## 🎯 Features
-
-- **Multi-Model Support**: Run models via Ollama, Apple Foundation Models, and more
-- **P2P Model Sharing**: Share models between your devices via WebRTC
-- **Cross-Platform**: Web interface and desktop apps for macOS, Windows, Linux
-- **Simple Authentication**: Optional auth key for securing your network
-- **Dynamic Configuration**: Configure signaling server on first launch
+- **[Electron App](https://github.com/szaneer/Pantheon-Electron)** - Desktop application (`apps/electron/`)
+- **[Web Client](https://github.com/szaneer/Pantheon-Web)** - Browser-based client (`apps/web/`)
+- **[Signaling Server](https://github.com/szaneer/Pantheon-Server)** - P2P coordination server (`server/`)
 
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js 18+
-- npm or yarn
-- Ollama (optional, for local models)
 
-### Installation
+- Node.js 18+ 
+- Docker (for server deployment)
+- Ollama (for local AI models)
+
+### Clone with Submodules
 
 ```bash
-# Clone repository
-git clone https://github.com/yourusername/Pantheon.git
+git clone --recursive https://github.com/szaneer/Pantheon.git
 cd Pantheon
 
-# Install dependencies
-npm install
+# If you already cloned without --recursive:
+git submodule update --init --recursive
 ```
 
-### Running the Components
+### Setup
 
-#### 1. Start the Signaling Server
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+2. **Start the signaling server:**
+   ```bash
+   cd server
+   npm install
+   npm start
+   ```
+
+3. **Launch the desktop app:**
+   ```bash
+   cd apps/electron
+   npm install
+   npm run dev
+   ```
+
+4. **Or run the web client:**
+   ```bash
+   cd apps/web
+   npm install
+   npm run dev
+   ```
+
+### Docker Deployment
+
+For production deployment:
+
 ```bash
-cd server
-npm install
-npm start
-```
-
-The server will run on `http://localhost:3001` by default.
-
-#### 2. Run the Electron App (Desktop)
-```bash
-cd apps/electron
-npm install
-npm run dev
-```
-
-#### 3. Run the Web App
-```bash
-cd apps/web
-npm install
-npm run dev
-```
-
-The web app will be available at `http://localhost:3003`.
-
-## 🐳 Docker Deployment
-
-### Server
-```bash
-cd server
+# Start server and web client
 docker-compose up -d
-```
 
-### Web App
-```bash
-cd apps/web
-docker build -t pantheon-web .
-docker run -p 80:80 pantheon-web
+# Server will be available on port 3001
+# Web client will be available on port 8080
 ```
 
 ## 🔧 Configuration
 
-### Server Environment Variables
-- `PORT` - Server port (default: 3001)
-- `AUTH_KEY` - Optional authentication key
-- `TWILIO_ACCOUNT_SID` - Twilio account for TURN servers (optional)
-- `TWILIO_AUTH_TOKEN` - Twilio auth token (optional)
+### Signaling Server
 
-### Client Configuration
-Both web and electron apps will prompt for:
-1. **Signaling Server URL** - Your server's address
-2. **Authentication Key** - Optional key if server requires auth
+Configure the server URL during onboarding or in settings:
 
-## 📱 Building Desktop Apps
+- **Default**: `http://localhost:3001`
+- **Authentication**: Optional auth key for server access
 
-### macOS (Universal Binary)
-```bash
-cd apps/electron
-npm run dist:mac
+### Supported AI Models
+
+- **Ollama Models**: Any model supported by Ollama
+- **Apple Foundation Models**: On macOS devices with Apple Silicon
+- **Remote Models**: Access models hosted on other devices
+
+## 📱 Usage
+
+1. **Setup**: Run the onboarding wizard on first launch
+2. **Connect**: Devices automatically discover each other on the same network
+3. **Share**: Enable model hosting to share your local models
+4. **Chat**: Select any available model (local or remote) and start chatting
+
+## 🛠️ Development
+
+### Project Structure
+
+```
+Pantheon/
+├── apps/
+│   ├── electron/          # Desktop application (submodule)
+│   └── web/              # Web client (submodule)
+├── server/               # Signaling server (submodule)
+├── docs/                 # Documentation
+└── scripts/              # Build and deployment scripts
 ```
 
-### Windows
+### Building
+
 ```bash
-cd apps/electron
-npm run dist:win
+# Build all components
+npm run build
+
+# Build specific component
+npm run build:electron
+npm run build:web
+npm run build:server
 ```
 
-### Linux
-```bash
-cd apps/electron
-npm run dist:linux
-```
+### Contributing
 
-## 🤝 Contributing
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+## 🔒 Security & Privacy
+
+- **Local Processing**: AI inference happens on your devices
+- **Encrypted Communication**: WebRTC provides encrypted P2P connections
+- **No Data Collection**: No telemetry or usage tracking
+- **Open Source**: Full transparency with open source code
+
+## ⚖️ Legal Disclaimer
+
+**IMPORTANT: READ BEFORE USING**
+
+This software is provided **"AS IS"** without warranty of any kind. By using this software, you acknowledge and agree that:
+
+- You use this software entirely at your own risk
+- The authors and contributors are not liable for any damages, data loss, or security issues
+- This is experimental software not intended for production use
+- You are responsible for your own data security and privacy
+- AI model interactions may produce unexpected or inappropriate content
+- P2P connections may expose your device to network security risks
+
+**No warranties, express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, or non-infringement are provided.**
+
+## 👥 Attribution
+
+**Author**: Siraj Zaneer  
+**Copyright**: © 2025 Siraj Zaneer  
+**Project**: Pantheon - Decentralized AI Platform
+
+### Third-Party Dependencies
+
+This project uses various open-source libraries and frameworks. See individual `package.json` files for complete dependency lists and their respective licenses.
 
 ## 📄 License
 
-MIT License - see LICENSE file for details.
+MIT License - see [LICENSE](LICENSE) for details.
+
+**By using this software, you agree to the terms of the MIT License and the disclaimers above.**
+
+## 🤝 Support
+
+- **Issues**: [GitHub Issues](https://github.com/szaneer/Pantheon/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/szaneer/Pantheon/discussions)
+
+## 🙏 Acknowledgments
+
+Built with:
+- [Electron](https://www.electronjs.org/) - Desktop application framework
+- [React](https://reactjs.org/) - UI framework
+- [Socket.IO](https://socket.io/) - Real-time communication
+- [WebRTC](https://webrtc.org/) - Peer-to-peer connections
+- [Ollama](https://ollama.ai/) - Local AI model runtime
+
+---
+
+**Pantheon** - Decentralized AI for everyone 🚀
